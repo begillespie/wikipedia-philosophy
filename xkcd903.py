@@ -43,14 +43,14 @@ def get_page(article):
     if r.status_code != 200:
         print('Link not found')
         close()
-        
+
     page = BeautifulSoup(r.text, 'html.parser')
     # Find <p> tags that are direct descendants of the content element
     body = page.find(id = 'mw-content-text').find_all('p', recursive=False)
 
     for para in body:
         # Get rid of some tags that won't hold what we're looking for:
-        [t.decompose() for t in para(['table', 'i', 'sup', 'span'])]
+        [t.decompose() for t in para(['table', 'i', 'sup'])]
         para = BeautifulSoup(remove_parentheses(str(para)), 'html.parser')
         if 'href' in str(para):
             links = para.find_all('a')
@@ -106,7 +106,7 @@ def main():
             article = 'Special:Random'
         else:
             article = sys.argv[1]
-        get_page('/wiki/'+article)
+        get_page('/wiki/' + str.replace(article, ' ', '_').lower())
     else:
         print('No article provided. Getting today\'s featured article.')
         get_featured_article()
