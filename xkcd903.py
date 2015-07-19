@@ -95,7 +95,7 @@ def remove_parentheses(string):
     return string_out
 
 def close():
-    if '/wiki/Special:Random' in chain[0]:
+    if '/wiki/special:random' in chain[0]:
         chain.pop(0)
     print("Chain length:", len(chain))
     sys.exit(0)
