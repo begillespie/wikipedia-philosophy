@@ -95,7 +95,7 @@ def remove_parentheses(string):
     return string_out
 
 def close():
-    if '/wiki/special:random' in chain[0]:
+    if '/wiki/Special:Random' in chain[0]:
         chain.pop(0)
     print("Chain length:", len(chain))
     sys.exit(0)
@@ -106,7 +106,7 @@ def main():
             article = 'Special:Random'
         else:
             article = sys.argv[1]
-        get_page('/wiki/' + str.replace(article, ' ', '_').lower())
+        get_page('/wiki/' + str.replace(article, ' ', '_'))
     else:
         print('No article provided. Getting today\'s featured article.')
         get_featured_article()
